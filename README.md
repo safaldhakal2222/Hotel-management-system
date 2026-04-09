@@ -1,4 +1,4 @@
 # Hotel-management-system
-authers: Safal Dhakal
-         Sandesh Adhikari
+Authers: Safal Dhakal,
+         Sandesh Adhikari,
          Sandesh Acharya
