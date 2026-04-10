@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Management System</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Management System</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -12,11 +12,15 @@
 <!-- TOP BAR -->
 <header class="topbar">
     <button class="menu-btn" onclick="toggleSidebar()">☰</button>
-    <h1>Hotel Management System</h1>
+    <h1>Hotel Management Dashboard</h1>
+    <div class="user">Admin</div>
 </header>
 
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
 <!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
+<aside class="sidebar" id="sidebar">
     <div class="logo">HotelMS</div>
 
     <a href="#">🏠 Dashboard</a>
@@ -25,36 +29,34 @@
     <a href="#">👤 Customers</a>
     <a href="#">💳 Payments</a>
     <a href="#">⚙ Settings</a>
-</div>
+</aside>
 
 <!-- MAIN CONTENT -->
-<div class="main-content" id="main">
+<main class="main-content" id="mainContent">
 
-    <!-- CARDS -->
-    <div class="cards">
-        <div class="card">
+    <section class="cards">
+        <div class="card blue">
             <h3>Total Rooms</h3>
             <p>50</p>
         </div>
 
-        <div class="card">
+        <div class="card green">
             <h3>Bookings</h3>
             <p>120</p>
         </div>
 
-        <div class="card">
+        <div class="card orange">
             <h3>Customers</h3>
             <p>80</p>
         </div>
 
-        <div class="card">
+        <div class="card purple">
             <h3>Revenue</h3>
             <p>$5000</p>
         </div>
-    </div>
+    </section>
 
-    <!-- GRID SECTION -->
-    <div class="grid">
+    <section class="grid">
 
         <div class="box">
             <h3>Recent Bookings</h3>
@@ -67,20 +69,28 @@
                 <tr>
                     <td>John</td>
                     <td>101</td>
-                    <td class="green">Checked-in</td>
+                    <td class="ok">Checked-in</td>
                 </tr>
                 <tr>
                     <td>Ram</td>
                     <td>203</td>
-                    <td class="yellow">Pending</td>
+                    <td class="pending">Pending</td>
                 </tr>
             </table>
         </div>
 
         <div class="box">
             <h3>Room Status</h3>
-            <p>Available: <b>20</b></p>
-            <p>Occupied: <b>30</b></p>
+
+            <div class="progress">
+                <div>Available <span>20</span></div>
+                <div class="bar"><div style="width:40%"></div></div>
+            </div>
+
+            <div class="progress">
+                <div>Occupied <span>30</span></div>
+                <div class="bar red"><div style="width:60%"></div></div>
+            </div>
         </div>
 
         <div class="box">
@@ -96,20 +106,19 @@
             <p>✔ New booking received</p>
         </div>
 
-    </div>
+    </section>
 
-</div>
+</main>
 
-<!-- FOOTER -->
-<footer id="footer">
-    <p>© 2026 Hotel Management System | All rights reserved</p>
+<footer>
+    © 2026 Hotel Management System
 </footer>
 
-<!-- JS -->
 <script>
-function toggleSidebar() {
+function toggleSidebar(){
     document.getElementById("sidebar").classList.toggle("active");
-    document.getElementById("main").classList.toggle("shift");
+    document.getElementById("overlay").classList.toggle("show");
+    document.getElementById("mainContent").classList.toggle("shift");
 }
 </script>
 
