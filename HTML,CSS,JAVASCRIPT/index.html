@@ -3,43 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Dashboard</title>
     <link rel="stylesheet" href="style.css">
-    <title>Hotel Management System</title>
 </head>
+
 <body>
 
-    <!-- Header -->
-    <header>
-        <h1>Hotel Manager Dashboard</h1>
-    </header>
+<!-- TOP BAR -->
+<header class="topbar">
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <h1>Hotel Management Dashboard</h1>
+</header>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <a href="#">Dashboard</a>
-        <a href="#">Bookings</a>
-        <a href="#">Rooms</a>
-        <a href="#">Guests</a>
-    </div>
-    <div class="cards">
-    <div class="card">
-        <h3>Total Rooms</h3>
-        <p>50</p>
-    </div>
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+    <div class="logo">HotelMS</div>
 
-    <div class="card">
-        <h3>Bookings</h3>
-        <p>120</p>
-    </div>
-
-    <div class="card">
-        <h3>Guests</h3>
-        <p>80</p>
-    </div>
-
-    <div class="card">
-        <h3>Revenue</h3>
-        <p>$5000</p>
-    </div>
+    <a href="#">🏠 Dashboard</a>
+    <a href="#">🛏 Bookings</a>
+    <a href="#">🏨 Rooms</a>
+    <a href="#">👤 Customers</a>
+    <a href="#">💳 Payments</a>
+    <a href="#">⚙ Settings</a>
 </div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content" id="main">
+
+    <!-- CARDS -->
+    <div class="cards">
+        <div class="card">
+            <h3>Total Rooms</h3>
+            <p>50</p>
+        </div>
+
+        <div class="card">
+            <h3>Bookings</h3>
+            <p>120</p>
+        </div>
+
+        <div class="card">
+            <h3>Customers</h3>
+            <p>80</p>
+        </div>
+
+        <div class="card">
+            <h3>Revenue</h3>
+            <p>$5000</p>
+        </div>
+    </div>
+
+    <!-- GRID SECTION -->
+    <div class="grid">
+
+        <div class="box">
+            <h3>Recent Bookings</h3>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Room</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>John</td>
+                    <td>101</td>
+                    <td class="green">Checked-in</td>
+                </tr>
+                <tr>
+                    <td>Ram</td>
+                    <td>203</td>
+                    <td class="yellow">Pending</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="box">
+            <h3>Room Status</h3>
+            <p>Available: <b>20</b></p>
+            <p>Occupied: <b>30</b></p>
+        </div>
+
+        <div class="box">
+            <h3>Quick Actions</h3>
+            <button>Add Booking</button>
+            <button>Add Room</button>
+            <button>Add Customer</button>
+        </div>
+
+        <div class="box">
+            <h3>Notifications</h3>
+            <p>⚠ 2 rooms need cleaning</p>
+            <p>✔ New booking received</p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer id="footer">
+    <p>© 2026 Hotel Management System | All rights reserved</p>
+</footer>
+
+<!-- JS -->
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("main").classList.toggle("shift");
+}
+</script>
+
 </body>
 </html>

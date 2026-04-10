@@ -13,11 +13,11 @@
             <form action="#" method="post">
                 <h1>Hotel Management System</h1>
                 <div class="input-box">
-                    <input type="text" placeholder="Username" required>
+                    <input type="text" placeholder="Username" id="username" required>
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" placeholder="Password" required>
+                    <input type="password" placeholder="Password" id="password" required>
                     <i class='bx  bxs-lock'></i> 
                 </div>
                 <div class="remember-forget">
@@ -25,11 +25,21 @@
                     <a href="#">Forget password?</a>
                 </div>
 
-                <button type="submit" class="btn">Login</button>
-                <div class="register-link">
-                    <p>Don't have an account? <a href="#">Register</a></p>
-                </div>
+                <button type="button" onclick="login()" class="btn">Login</button>
             </form>
         </div>
     </body>
+    <script>
+        function login(event) {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            if (username === "admin" && password === "1234") {
+                window.location.href = "index.html";
+            } else {
+                alert("Invalid login");
+            }
+        }
+</script>
+</script>
 </html>
