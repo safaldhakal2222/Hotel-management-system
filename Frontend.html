@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxury Hotel</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #f5f5f5;
+}
+
+/* Navbar */
+nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    z-index: 1000;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+nav ul li:hover {
+    color: #00adb5;
+}
+
+/* Hero */
+.hero {
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945') center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 60px;
+    animation: fadeIn 2s;
+}
+
+.hero p {
+    margin: 20px 0;
+}
+
+.hero button {
+    padding: 12px 25px;
+    background: #00adb5;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.hero button:hover {
+    background: #007b80;
+    transform: scale(1.1);
+}
+
+/* Sections */
+.section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+/* Rooms */
+.rooms {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.room {
+    background: white;
+    width: 280px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.room:hover {
+    transform: translateY(-10px);
+}
+
+.room img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.room h3 {
+    margin: 10px 0;
+}
+
+.room button {
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    background: #00adb5;
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+/* Services */
+.services {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.service {
+    background: white;
+    padding: 25px;
+    width: 220px;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.service:hover {
+    transform: scale(1.05);
+}
+
+/* Booking */
+.booking {
+    max-width: 400px;
+    margin: auto;
+}
+
+.booking input, .booking select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.booking button {
+    width: 100%;
+    padding: 12px;
+    background: #00adb5;
+    border: none;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h2>Luxury Hotel</h2>
+    <ul>
+        <li onclick="scrollTo('home')">Home</li>
+        <li onclick="scrollTo('rooms')">Rooms</li>
+        <li onclick="scrollTo('services')">Services</li>
+        <li onclick="scrollTo('booking')">Booking</li>
+    </ul>
+</nav>
+
+<section class="hero" id="home">
+    <h1>Experience Luxury</h1>
+    <p>Comfort | Relax | Enjoy</p>
+    <button onclick="scrollTo('booking')">Book Now</button>
+</section>
+
+<section class="section" id="rooms">
+    <h2>Our Rooms</h2>
+    <div class="rooms">
+        <div class="room">
+            <img src="https://images.unsplash.com/photo-1501117716987-c8e1ecb210f9">
+            <h3>Single Room</h3>
+            <p>$50</p>
+            <button>Book</button>
+        </div>
+
+        <div class="room">
+            <img src="https://images.unsplash.com/photo-1560448075-bb485b067938">
+            <h3>Double Room</h3>
+            <p>$90</p>
+            <button>Book</button>
+        </div>
+
+        <div class="room">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b">
+            <h3>Deluxe Room</h3>
+            <p>$150</p>
+            <button>Book</button>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="services">
+    <h2>Our Services</h2>
+    <div class="services">
+        <div class="service">Free WiFi</div>
+        <div class="service">Swimming Pool</div>
+        <div class="service">Restaurant</div>
+        <div class="service">24/7 Support</div>
+    </div>
+</section>
+
+<section class="section" id="booking">
+    <h2>Book Now</h2>
+    <div class="booking">
+        <input type="text" placeholder="Name">
+        <input type="email" placeholder="Email">
+
+        <select>
+            <option>Select Room</option>
+            <option>Single</option>
+            <option>Double</option>
+            <option>Deluxe</option>
+        </select>
+
+        <input type="date">
+        <input type="date">
+
+        <button onclick="alert('Booking Successful!')">Book</button>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Luxury Hotel</p>
+	<pre><center> Managers:Safal Dhaka,Sandesh Adhikari and Sandesh Acharya</center>
+				   </pre>
+</footer>
+
+<script>
+function scrollTo(id) {
+    document.getElementById(id).scrollIntoView({behavior: "smooth"});
+}
+</script>
+
+</body>
+</html>
