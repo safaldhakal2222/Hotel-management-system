@@ -12,7 +12,7 @@ body{
     color:#e5e7eb;
 }
 
-/* TOPBAR FIXED */
+/* ================= TOP BAR FIXED ================= */
 .topbar{
     position:fixed;
     top:0;
@@ -23,27 +23,34 @@ body{
     backdrop-filter: blur(10px);
     border-bottom:1px solid rgba(255,255,255,0.1);
     z-index:1000;
+
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    padding:0 15px;
 }
 
-
-/* CENTER TITLE */
-.topbar h1{
-    position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-    font-size:16px;
-    font-weight:600;
-    margin:0;
-    white-space:nowrap;
+/* LEFT */
+.left{
+    width:60px;
+    display:flex;
+    justify-content:center;
 }
 
-/* MENU LEFT */
+/* CENTER */
+.center{
+    flex:1;
+    display:flex;
+    justify-content:center;
+}
+
+/* RIGHT */
+.right{
+    width:80px;
+    display:flex;
+    justify-content:center;
+}
+
+/* MENU BUTTON */
 .menu-btn{
-    position:static;
     width:40px;
     height:40px;
     font-size:22px;
@@ -56,13 +63,21 @@ body{
     justify-content:center;
 }
 
-/* USER RIGHT */
+/* TITLE */
+.center h1{
+    font-size:16px;
+    font-weight:600;
+    margin:0;
+    white-space:nowrap;
+}
+
+/* USER */
 .user{
     font-size:13px;
     opacity:0.8;
 }
 
-/* SIDEBAR */
+/* ================= SIDEBAR ================= */
 .sidebar{
     position:fixed;
     top:60px;
@@ -94,12 +109,10 @@ body{
     color:#cbd5e1;
     text-decoration:none;
     border-radius:8px;
-    transition:0.2s;
 }
 
 .sidebar a:hover{
     background:#1e293b;
-    transform:translateX(5px);
 }
 
 /* OVERLAY */
@@ -124,12 +137,11 @@ body{
     max-width:1200px;
     margin-left:auto;
     margin-right:auto;
-    transition:0.3s ease;
+    transition:0.3s;
 }
 
-/* SHIFT EFFECT */
 .main-content.shift{
-    transform: translateX(120px);
+    margin-left:240px;
 }
 
 /* CARDS */
@@ -160,7 +172,6 @@ body{
 .card p{
     font-size:22px;
     font-weight:600;
-    margin-top:5px;
 }
 
 /* COLORS */
@@ -172,10 +183,16 @@ body{
 /* GRID */
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    grid-template-columns:repeat(2,1fr);
     gap:15px;
 }
 
+/* BIG BOX */
+.box.large{
+    grid-column:span 2;
+}
+
+/* BOX */
 .box{
     padding:18px;
     border-radius:14px;
@@ -246,4 +263,19 @@ footer{
     margin-top:20px;
     font-size:12px;
     opacity:0.6;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .box.large{
+        grid-column:span 1;
+    }
+
+    .main-content.shift{
+        margin-left:0;
+    }
 }
