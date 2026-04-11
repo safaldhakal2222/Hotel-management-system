@@ -27,7 +27,6 @@ class HotelForm(forms.ModelForm):
             'total_rooms': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
-
 # ============ ROOM FORMS ============
 
 class RoomTypeForm(forms.ModelForm):

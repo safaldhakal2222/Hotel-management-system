@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hotel Dashboard Pro</title>
+<title>Hotel Management System</title>
+
 <link rel="stylesheet" href="style.css">
 <script src="api.js"></script>
 </head>
 
 <body>
 
-<!-- TOP BAR (FIXED STRUCTURE) -->
+<!-- TOP BAR -->
 <header class="topbar">
-
     <div class="left">
         <button class="menu-btn" onclick="toggleSidebar()">☰</button>
     </div>
@@ -25,7 +25,6 @@
         <div class="user" id="userDisplay">Admin</div>
         <button onclick="logout()" style="background: #dc3545; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; margin-left: 10px;">Logout</button>
     </div>
-
 </header>
 
 <!-- OVERLAY -->
@@ -33,11 +32,11 @@
 
 <!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
-    <div class="logo">HotelMS Pro</div>
+    <div class="logo">HotelMS</div>
 
     <a href="#">🏠 Dashboard</a>
-    <a href="#">🛏 Bookings</a>
-    <a href="#">🏨 Rooms</a>
+    <a href="booking.html">🛏 Bookings</a>
+    <a href="rooms.html">🏨 Rooms</a>
     <a href="#">👤 Customers</a>
     <a href="#">💳 Payments</a>
     <a href="#">⚙ Settings</a>
@@ -72,6 +71,7 @@
     <!-- GRID -->
     <section class="grid">
 
+        <!-- RECENT BOOKINGS -->
         <div class="box large">
             <h3>Recent Bookings</h3>
             <table id="bookingsTable">
@@ -85,6 +85,7 @@
             </table>
         </div>
 
+        <!-- ROOM STATUS -->
         <div class="box large">
             <h3>Room Status</h3>
 
@@ -99,6 +100,7 @@
             </div>
         </div>
 
+        <!-- ACTIONS -->
         <div class="box">
             <h3>Quick Actions</h3>
             <button>Add Booking</button>
@@ -106,6 +108,7 @@
             <button>Add Customer</button>
         </div>
 
+        <!-- NOTIFICATIONS -->
         <div class="box">
             <h3>Notifications</h3>
             <p>⚠ 2 rooms need cleaning</p>
@@ -116,7 +119,6 @@
 
 </main>
 
-<!-- FOOTER -->
 <footer>
     © 2026 Hotel Management System
 </footer>

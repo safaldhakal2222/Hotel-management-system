@@ -244,8 +244,4 @@ class ComplaintAdmin(admin.ModelAdmin):
     )
 
 
-from .models import Room, Customer, Booking
-
-admin.site.register(Room)
-admin.site.register(Customer)
-admin.site.register(Booking)
+from .models import Room, Guest, Booking
