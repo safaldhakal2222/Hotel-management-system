@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hotel Dashboard Pro</title>
+<title>Hotel Management System</title>
+
 <link rel="stylesheet" href="style.css">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 
 <body>
 
 <!-- TOP BAR -->
 <header class="topbar">
-
     <div class="left">
         <button class="menu-btn" onclick="toggleSidebar()">☰</button>
     </div>
@@ -23,7 +24,6 @@
     <div class="right">
         <div class="user">Admin</div>
     </div>
-
 </header>
 
 <!-- OVERLAY -->
@@ -33,9 +33,9 @@
 <aside class="sidebar" id="sidebar">
     <div class="logo">HotelMS</div>
 
-    <a href="index.html">🏠 Dashboard</a>
+    <a href="#">🏠 Dashboard</a>
     <a href="booking.html">🛏 Bookings</a>
-    <a href="#">🏨 Rooms</a>
+    <a href="rooms.html">🏨 Rooms</a>
     <a href="#">👤 Customers</a>
     <a href="#">💳 Payments</a>
     <a href="#">⚙ Settings</a>
@@ -48,63 +48,74 @@
     <section class="cards">
         <div class="card blue">
             <h3>Total Rooms</h3>
-            <p id="totalRooms">Loading...</p>
+            <p id="totalRooms">0</p>
         </div>
 
         <div class="card green">
             <h3>Bookings</h3>
-            <p id="totalBookings">Loading...</p>
+            <p id="totalBookings">0</p>
         </div>
 
         <div class="card orange">
             <h3>Customers</h3>
-            <p id="totalCustomers">Loading...</p>
+            <p id="totalCustomers">0</p>
         </div>
 
         <div class="card purple">
             <h3>Revenue</h3>
-            <p id="totalRevenue">Loading...</p>
+            <p id="totalRevenue">$0</p>
         </div>
     </section>
 
     <!-- GRID -->
     <section class="grid">
 
+        <!-- RECENT BOOKINGS -->
         <div class="box large">
             <h3>Recent Bookings</h3>
+
             <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Room</th>
-                    <th>Status</th>
-                </tr>
-                <tr>
-                    <td>John</td>
-                    <td>101</td>
-                    <td class="ok">Checked-in</td>
-                </tr>
-                <tr>
-                    <td>Ram</td>
-                    <td>203</td>
-                    <td class="pending">Pending</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Room</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="bookingTable">
+                    <!-- API DATA -->
+                </tbody>
             </table>
         </div>
 
+        <!-- ROOM STATUS -->
         <div class="box large">
             <h3>Room Status</h3>
 
             <div class="progress">
-                <div>Available <span>20</span></div>
-                <div class="bar"><div style="width:40%"></div></div>
+                <div>Available <span id="availableRooms">0</span></div>
+                <div class="bar">
+                    <div id="availableBar"></div>
+                </div>
             </div>
 
             <div class="progress">
-                <div>Occupied <span>30</span></div>
-                <div class="bar red"><div style="width:60%"></div></div>
+                <div>Occupied <span id="occupiedRooms">0</span></div>
+                <div class="bar red">
+                    <div id="occupiedBar"></div>
+                </div>
+            </div>
+
+            <div class="progress">
+                <div>Maintenance <span id="maintenanceRooms">0</span></div>
+                <div class="bar yellow">
+                    <div id="maintenanceBar"></div>
+                </div>
             </div>
         </div>
 
+        <!-- ACTIONS -->
         <div class="box">
             <h3>Quick Actions</h3>
             <button>Add Booking</button>
@@ -112,6 +123,7 @@
             <button>Add Customer</button>
         </div>
 
+        <!-- NOTIFICATIONS -->
         <div class="box">
             <h3>Notifications</h3>
             <p>⚠ 2 rooms need cleaning</p>
@@ -122,7 +134,6 @@
 
 </main>
 
-<!-- FOOTER -->
 <footer>
     © 2026 Hotel Management System
 </footer>

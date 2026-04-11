@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rooms - Hotel Management</title>
+
+<link rel="stylesheet" href="rooms.css">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+
+    <div class="left">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    </div>
+
+    <div class="center">
+        <h1>Room Management</h1>
+    </div>
+
+    <div class="right">
+        <div class="user">Admin</div>
+    </div>
+
+</header>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo">HotelMS</div>
+
+    <a href="index.html">🏠 Dashboard</a>
+    <a href="booking.html">🛏 Bookings</a>
+    <a href="rooms.html">🏨 Rooms</a>
+    <a href="#">👤 Customers</a>
+    <a href="#">💳 Payments</a>
+    <a href="#">⚙ Settings</a>
+
+</aside>
+
+<!-- MAIN -->
+<main class="main-content" id="mainContent">
+
+    <!-- HEADER -->
+    <div class="page-header">
+        <h2>Rooms Overview</h2>
+        <p>Manage all hotel rooms, status, and availability</p>
+    </div>
+
+    <!-- STATS CARDS -->
+    <section class="cards">
+
+        <div class="card blue">
+            <h3>Total Rooms</h3>
+            <p id="totalRooms">0</p>
+        </div>
+
+        <div class="card green">
+            <h3>Available</h3>
+            <p id="availableRooms">0</p>
+        </div>
+
+        <div class="card orange">
+            <h3>Occupied</h3>
+            <p id="occupiedRooms">0</p>
+        </div>
+
+        <div class="card purple">
+            <h3>Maintenance</h3>
+            <p id="maintenanceRooms">0</p>
+        </div>
+
+    </section>
+
+    <!-- ROOM TABLE (API DATA) -->
+    <section class="box large" style="margin-top:15px;">
+
+        <h3>Room List</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Room No</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="roomTable">
+                <tr>
+                    <td colspan="5">Loading rooms...</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </section>
+
+    <!-- QUICK ACTIONS -->
+    <section class="grid" style="margin-top:15px;">
+
+        <div class="box">
+            <h3>Add New Room</h3>
+            <button>Add Room</button>
+        </div>
+
+        <div class="box">
+            <h3>Update Room Status</h3>
+            <button>Manage Status</button>
+        </div>
+
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    © 2026 Hotel Management System
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

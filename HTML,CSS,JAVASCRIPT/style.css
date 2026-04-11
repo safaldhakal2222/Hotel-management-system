@@ -10,6 +10,7 @@
 body{
     background: linear-gradient(135deg,#0f172a,#1e293b);
     color:#e5e7eb;
+    overflow-x:hidden;
 }
 
 /* ================= TOP BAR ================= */
@@ -28,28 +29,17 @@ body{
     align-items:center;
 }
 
-/* LEFT */
-.left{
-    width:60px;
-    display:flex;
-    justify-content:center;
-}
-
-/* CENTER */
-.center{
-    flex:1;
-    display:flex;
-    justify-content:center;
-}
-
-/* RIGHT */
-.right{
+.left,.right{
     width:80px;
     display:flex;
     justify-content:center;
 }
 
-/* MENU BUTTON */
+.center{
+    flex:1;
+    text-align:center;
+}
+
 .menu-btn{
     width:40px;
     height:40px;
@@ -58,23 +48,6 @@ body{
     border:none;
     color:white;
     cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-/* TITLE */
-.center h1{
-    font-size:16px;
-    font-weight:600;
-    margin:0;
-    white-space:nowrap;
-}
-
-/* USER */
-.user{
-    font-size:13px;
-    opacity:0.8;
 }
 
 /* ================= SIDEBAR ================= */
@@ -85,21 +58,12 @@ body{
     width:240px;
     height:100%;
     background: rgba(15,23,42,0.95);
-    backdrop-filter: blur(10px);
     padding:20px;
     transition:0.3s;
-    border-right:1px solid rgba(255,255,255,0.08);
 }
 
 .sidebar.active{
     left:0;
-}
-
-.logo{
-    text-align:center;
-    font-weight:700;
-    margin-bottom:20px;
-    color:#60a5fa;
 }
 
 .sidebar a{
@@ -115,7 +79,7 @@ body{
     background:#1e293b;
 }
 
-/* OVERLAY */
+/* ================= OVERLAY ================= */
 .overlay{
     position:fixed;
     inset:0;
@@ -130,21 +94,22 @@ body{
     pointer-events:all;
 }
 
-/* MAIN */
+/* ================= MAIN CONTENT ================= */
 .main-content{
     margin-top:80px;
     padding:20px;
-    max-width:1200px;
+    max-width:1100px;
     margin-left:auto;
     margin-right:auto;
+    min-height:calc(100vh - 100px);
     transition:0.3s;
 }
 
 .main-content.shift{
-    margin-left:240px;
+    margin-left:375px;
 }
 
-/* CARDS */
+/* ================= CARDS ================= */
 .cards{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
@@ -180,19 +145,17 @@ body{
 .orange{border-left:4px solid #fb923c;}
 .purple{border-left:4px solid #a78bfa;}
 
-/* GRID */
+/* ================= GRID ================= */
 .grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:15px;
 }
 
-/* BIG BOX */
 .box.large{
     grid-column:span 2;
 }
 
-/* BOX */
 .box{
     padding:18px;
     border-radius:14px;
@@ -200,11 +163,16 @@ body{
     border:1px solid rgba(255,255,255,0.08);
 }
 
-/* TABLE */
+/* ================= TABLE ================= */
 table{
     width:100%;
     margin-top:10px;
     border-collapse:collapse;
+}
+
+td{
+    padding:10px 0;
+    border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 th{
@@ -213,16 +181,12 @@ th{
     opacity:0.6;
 }
 
-td{
-    padding:8px 0;
-    border-bottom:1px solid rgba(255,255,255,0.08);
-}
+/* STATUS COLORS */
+.available{color:#34d399;}
+.occupied{color:#f87171;}
+.maintenance{color:#fbbf24;}
 
-/* STATUS */
-.ok{color:#34d399;}
-.pending{color:#fbbf24;}
-
-/* PROGRESS */
+/* ================= PROGRESS ================= */
 .bar{
     height:6px;
     background:#1f2937;
@@ -234,13 +198,18 @@ td{
 .bar div{
     height:100%;
     background:#34d399;
+    transition: width 0.5s ease;
 }
 
 .bar.red div{
     background:#f87171;
 }
 
-/* BUTTON */
+.bar.yellow div{
+    background:#fbbf24;
+}
+
+/* ================= BUTTON ================= */
 button{
     width:100%;
     margin-top:8px;
@@ -256,7 +225,7 @@ button:hover{
     background:#1d4ed8;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 footer{
     text-align:center;
     padding:15px;
@@ -265,7 +234,7 @@ footer{
     opacity:0.6;
 }
 
-/* RESPONSIVE */
+/* ================= RESPONSIVE ================= */
 @media(max-width:768px){
     .grid{
         grid-template-columns:1fr;
@@ -276,6 +245,6 @@ footer{
     }
 
     .main-content.shift{
-        margin-left:0;
+        transform:none;
     }
 }
