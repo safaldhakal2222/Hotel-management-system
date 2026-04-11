@@ -125,9 +125,9 @@
 
 <script>
 // Check if logged in on page load
-if (!isLoggedIn()) {
-    window.location.href = 'login.html';
-}
+    // if (!isLoggedIn()) {
+    //     window.location.href = 'login.html';
+    // }
 
 // Set username in header
 document.getElementById('userDisplay').textContent = localStorage.getItem('username') || 'User';
@@ -180,7 +180,9 @@ async function loadDashboard() {
             tableBody.innerHTML += '<tr><td colspan="4" style="text-align: center;">No upcoming bookings</td></tr>';
         } else {
             bookings.slice(0, 5).forEach(booking => {
-                const guestName = booking.guest_detail?.first_name + ' ' + booking.guest_detail?.last_name || 'Unknown';
+                const guestName = (booking.guest_detail?.first_name && booking.guest_detail?.last_name) 
+                    ? `${booking.guest_detail.first_name} ${booking.guest_detail.last_name}` 
+                    : 'Unknown';
                 const roomNumber = booking.room_detail?.room_number || 'N/A';
                 const checkIn = new Date(booking.check_in_date).toLocaleDateString();
                 const statusClass = booking.status === 'Confirmed' ? 'ok' : booking.status === 'Pending' ? 'pending' : 'ok';
