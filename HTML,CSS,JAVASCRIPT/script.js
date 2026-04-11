@@ -62,50 +62,11 @@ async function loadBookings() {
     }
 }
 
-async function loadRooms() {
-    try {
-        const res = await fetch("http://127.0.0.1:8000/api/rooms/");
-        const rooms = await res.json();
-
-        let available = 0;
-        let occupied = 0;
-        let maintenance = 0;
-
-        rooms.forEach(room => {
-            let status = room.status || "available";
-
-            if (status === "available") available++;
-            else if (status === "occupied") occupied++;
-            else maintenance++;
-        });
-
-        let total = rooms.length;
-
-        // numbers
-        document.getElementById("totalRooms").innerText = total;
-        document.getElementById("availableRooms").innerText = available;
-        document.getElementById("occupiedRooms").innerText = occupied;
-        document.getElementById("maintenanceRooms").innerText = maintenance;
-
-        // bars (percentage)
-        document.getElementById("availableBar").style.width =
-            (available / total) * 100 + "%";
-
-        document.getElementById("occupiedBar").style.width =
-            (occupied / total) * 100 + "%";
-
-        document.getElementById("maintenanceBar").style.width =
-            (maintenance / total) * 100 + "%";
-
-    } catch (error) {
-        console.log("Room API Error:", error);
-    }
-}
 
 const API_URL = "http://127.0.0.1:8000/api/rooms/";
 
-async function loadRooms(){
-    try{
+async function loadRooms() {
+    try {
         const response = await fetch(API_URL);
         const rooms = await response.json();
 
@@ -116,45 +77,66 @@ async function loadRooms(){
         let occupied = 0;
         let maintenance = 0;
 
-        table.innerHTML = "";
+        if (table) table.innerHTML = "";
 
         rooms.forEach(room => {
 
             let status = room.status || "available";
 
-            if(status === "available") available++;
-            else if(status === "occupied") occupied++;
+            if (status === "available") available++;
+            else if (status === "occupied") occupied++;
             else maintenance++;
 
-            table.innerHTML += `
-                <tr>
-                    <td>${room.room_number || room.id}</td>
-                    <td>${room.room_type || "Standard"}</td>
-                    <td class="${status === "available" ? "ok" : "pending"}">
-                        ${status}
-                    </td>
-                    <td>$${room.price || 0}</td>
-                    <td><button>View</button></td>
-                </tr>
-            `;
+            if (table) {
+                table.innerHTML += `
+                    <tr>
+                        <td>${room.room_number || room.id}</td>
+                        <td>${room.room_type || "Standard"}</td>
+                        <td class="${status === "available" ? "ok" : "pending"}">
+                            ${status}
+                        </td>
+                        <td>$${room.price || 0}</td>
+                        <td><button>View</button></td>
+                    </tr>
+                `;
+            }
         });
 
-        document.getElementById("totalRooms").innerText = total;
-        document.getElementById("availableRooms").innerText = available;
-        document.getElementById("occupiedRooms").innerText = occupied;
-        document.getElementById("maintenanceRooms").innerText = maintenance;
+        // Update stat cards if they exist on the page
+        if (document.getElementById("totalRooms"))       document.getElementById("totalRooms").innerText = total;
+        if (document.getElementById("availableRooms"))   document.getElementById("availableRooms").innerText = available;
+        if (document.getElementById("occupiedRooms"))    document.getElementById("occupiedRooms").innerText = occupied;
+        if (document.getElementById("maintenanceRooms")) document.getElementById("maintenanceRooms").innerText = maintenance;
 
-    } catch(error){
-        console.log("API Error:", error);
+        // Update progress bars if they exist on the page (dashboard only)
+        if (document.getElementById("availableBar"))
+            document.getElementById("availableBar").style.width = (available / total) * 100 + "%";
+        if (document.getElementById("occupiedBar"))
+            document.getElementById("occupiedBar").style.width = (occupied / total) * 100 + "%";
+        if (document.getElementById("maintenanceBar"))
+            document.getElementById("maintenanceBar").style.width = (maintenance / total) * 100 + "%";
 
-        document.getElementById("roomTable").innerHTML =
-        "<tr><td colspan='5'>Failed to load rooms</td></tr>";
+    } catch (error) {
+        console.error("API Error:", error);
+
+        const table = document.getElementById("roomTable");
+        if (table) table.innerHTML = "<tr><td colspan='5'>Failed to load rooms</td></tr>";
     }
 }
 
 
-loadRooms();
-loadDashboard();
-loadBookings();
-loadRooms();
+function createBooking() {
+    console.log("createBooking() called — awaiting backend integration.");
+}
 
+
+// Run only the functions relevant to the current page
+const page = window.location.pathname.split("/").pop();
+
+if (page === "index.html" || page === "") {
+    loadDashboard();
+    loadBookings();
+    loadRooms();
+} else if (page === "rooms.html") {
+    loadRooms();
+}
