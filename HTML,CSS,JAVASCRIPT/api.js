@@ -92,7 +92,9 @@ async function apiCall(endpoint, method = 'GET', data = null) {
 
 async function getHotels() {
     try {
-        return await apiCall('/hotels/');
+        const response = await apiCall('/hotels/');
+        // Handle both paginated and non-paginated responses
+        return Array.isArray(response) ? response : (response.results || []);
     } catch (error) {
         console.error('Error fetching hotels:', error);
         return [];
@@ -111,7 +113,9 @@ async function getHotelStatistics(id) {
 
 async function getRooms() {
     try {
-        return await apiCall('/rooms/');
+        const response = await apiCall('/rooms/');
+        // Handle both paginated and non-paginated responses
+        return Array.isArray(response) ? response : (response.results || []);
     } catch (error) {
         console.error('Error fetching rooms:', error);
         return [];
@@ -120,7 +124,9 @@ async function getRooms() {
 
 async function getAvailableRooms(checkIn, checkOut) {
     try {
-        return await apiCall(`/rooms/available/?check_in=${checkIn}&check_out=${checkOut}`);
+        const response = await apiCall(`/rooms/available/?check_in=${checkIn}&check_out=${checkOut}`);
+        // Handle both paginated and non-paginated responses
+        return Array.isArray(response) ? response : (response.results || []);
     } catch (error) {
         console.error('Error fetching available rooms:', error);
         return [];
@@ -135,7 +141,9 @@ async function getRoomById(id) {
 
 async function getBookings() {
     try {
-        return await apiCall('/bookings/');
+        const response = await apiCall('/bookings/');
+        // Handle both paginated and non-paginated responses
+        return Array.isArray(response) ? response : (response.results || []);
     } catch (error) {
         console.error('Error fetching bookings:', error);
         return [];
@@ -144,7 +152,9 @@ async function getBookings() {
 
 async function getUpcomingBookings() {
     try {
-        return await apiCall('/bookings/upcoming/');
+        const response = await apiCall('/bookings/upcoming/');
+        // Handle both paginated and non-paginated responses
+        return Array.isArray(response) ? response : (response.results || []);
     } catch (error) {
         console.error('Error fetching upcoming bookings:', error);
         return [];
@@ -179,7 +189,9 @@ async function cancelBooking(id) {
 
 async function getGuests() {
     try {
-        return await apiCall('/guests/');
+        const response = await apiCall('/guests/');
+        // Handle both paginated and non-paginated responses
+        return Array.isArray(response) ? response : (response.results || []);
     } catch (error) {
         console.error('Error fetching guests:', error);
         return [];
@@ -202,7 +214,9 @@ async function createGuest(guestData) {
 
 async function getPayments() {
     try {
-        return await apiCall('/payments/');
+        const response = await apiCall('/payments/');
+        // Handle both paginated and non-paginated responses
+        return Array.isArray(response) ? response : (response.results || []);
     } catch (error) {
         console.error('Error fetching payments:', error);
         return [];
@@ -221,7 +235,9 @@ async function processPayment(id) {
 
 async function getServices() {
     try {
-        return await apiCall('/services/');
+        const response = await apiCall('/services/');
+        // Handle both paginated and non-paginated responses
+        return Array.isArray(response) ? response : (response.results || []);
     } catch (error) {
         console.error('Error fetching services:', error);
         return [];
@@ -232,7 +248,9 @@ async function getServices() {
 
 async function getReviews() {
     try {
-        return await apiCall('/reviews/');
+        const response = await apiCall('/reviews/');
+        // Handle both paginated and non-paginated responses
+        return Array.isArray(response) ? response : (response.results || []);
     } catch (error) {
         console.error('Error fetching reviews:', error);
         return [];
@@ -251,7 +269,9 @@ async function createReview(reviewData) {
 
 async function getStaff() {
     try {
-        return await apiCall('/staff/');
+        const response = await apiCall('/staff/');
+        // Handle both paginated and non-paginated responses
+        return Array.isArray(response) ? response : (response.results || []);
     } catch (error) {
         console.error('Error fetching staff:', error);
         return [];
@@ -259,14 +279,18 @@ async function getStaff() {
 }
 
 async function getActiveStaff() {
-    return await apiCall('/staff/active/');
+    const response = await apiCall('/staff/active/');
+    // Handle both paginated and non-paginated responses
+    return Array.isArray(response) ? response : (response.results || []);
 }
 
 // ============ MAINTENANCE & COMPLAINTS ============
 
 async function getMaintenanceRequests() {
     try {
-        return await apiCall('/maintenance-requests/');
+        const response = await apiCall('/maintenance-requests/');
+        // Handle both paginated and non-paginated responses
+        return Array.isArray(response) ? response : (response.results || []);
     } catch (error) {
         console.error('Error fetching maintenance requests:', error);
         return [];
@@ -279,7 +303,9 @@ async function completeMaintenanceRequest(id) {
 
 async function getComplaints() {
     try {
-        return await apiCall('/complaints/');
+        const response = await apiCall('/complaints/');
+        // Handle both paginated and non-paginated responses
+        return Array.isArray(response) ? response : (response.results || []);
     } catch (error) {
         console.error('Error fetching complaints:', error);
         return [];
