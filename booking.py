@@ -3,6 +3,8 @@ from db import get_db
 
 booking_routes = Blueprint('booking', __name__)
 
+
+
 @booking_routes.route('/book', methods=['POST'])
 def book_room():
     data = request.json
