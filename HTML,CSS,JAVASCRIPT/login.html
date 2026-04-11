@@ -32,18 +32,10 @@
                 <label><input type="checkbox"> Remember me</label>
                 <a href="#">Forgot password?</a>
             </div>
-
-            <button type="submit">Login</button>
-
+            <button type="button" onclick="login()" class="btn">Login</button>
         </form>
-
     </div>
-
-<<<<<<< HEAD
-                <button type="button" onclick="login()" class="btn">Login</button>
-            </form>
-        </div>
-    </body>
+</body>
     <script src="api.js"></script>
     <script>
         // Redirect to dashboard if already logged in
@@ -79,22 +71,4 @@
             }
         });
     </script>
-=======
-    <script>
-        function login(event){
-            event.preventDefault();
-
-            let u = document.getElementById("username").value;
-            let p = document.getElementById("password").value;
-
-            if(u === "admin" && p === "1234"){
-                window.location.href = "index.html";
-            } else {
-                alert("Invalid Login");
-            }
-        }
-    </script>
-
-</body>
->>>>>>> 571bf0532c572cd87009a583a5f8ca756c4f4b29
 </html>
