@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Management System</title>
+
+<link rel="stylesheet" href="style.css">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+
+    <div class="left">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    </div>
+
+    <div class="center">
+        <h1>Payments Management</h1>
+    </div>
+
+    <div class="right">
+        <div class="user">Admin</div>
+    </div>
+</header>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+    <div class="logo">HotelMS</div>
+
+    <a href="index.html">🏠 Dashboard</a>
+    <a href="booking.html">🛏 Bookings</a>
+    <a href="rooms.html">🏨 Rooms</a>
+    <a href="customers.html">👤 Customers</a>
+    <a href="payments.html">💳 Payments</a>
+    <a href="setting.html">⚙ Settings</a>
+</aside>
+
+<!-- MAIN -->
+<main class="main-content" id="mainContent"></main>
+
+<footer>
+    © 2026 Hotel Management System
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
