@@ -437,6 +437,31 @@ class DashboardView(TemplateView):
     template_name = 'index.html'
 
 
+class BookingView(TemplateView):
+    """Serve the booking page"""
+    template_name = 'booking.html'
+
+
+class RoomsView(TemplateView):
+    """Serve the rooms page"""
+    template_name = 'rooms.html'
+
+
+class CustomersView(TemplateView):
+    """Serve the customers page"""
+    template_name = 'customers.html'
+
+
+class PaymentsView(TemplateView):
+    """Serve the payments page"""
+    template_name = 'payments.html'
+
+
+class SettingsView(TemplateView):
+    """Serve the settings page"""
+    template_name = 'settings.html'
+
+
 class AuthCheckView(APIView):
     """Check if user is authenticated"""
     def get(self, request):

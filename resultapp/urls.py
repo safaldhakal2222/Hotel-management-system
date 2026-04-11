@@ -23,6 +23,11 @@ urlpatterns = [
     path('api/', include(router.urls)),
     # Frontend views
     path('', views.DashboardView.as_view(), name='dashboard'),
+    path('booking/', views.BookingView.as_view(), name='booking'),
+    path('rooms/', views.RoomsView.as_view(), name='rooms'),
+    path('customers/', views.CustomersView.as_view(), name='customers'),
+    path('payments/', views.PaymentsView.as_view(), name='payments'),
+    path('settings/', views.SettingsView.as_view(), name='settings'),
     path('login/', views.LoginView.as_view(), name='login'),
     path('auth-check/', views.AuthCheckView.as_view(), name='auth-check'),
 ]
