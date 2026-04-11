@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hotel Dashboard Pro</title>
 <link rel="stylesheet" href="style.css">
+<script src="api.js"></script>
 </head>
 
 <body>
@@ -21,7 +22,8 @@
     </div>
 
     <div class="right">
-        <div class="user">Admin</div>
+        <div class="user" id="userDisplay">Admin</div>
+        <button onclick="logout()" style="background: #dc3545; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; margin-left: 10px;">Logout</button>
     </div>
 
 </header>
@@ -48,22 +50,22 @@
     <section class="cards">
         <div class="card blue">
             <h3>Total Rooms</h3>
-            <p>50</p>
+            <p id="totalRoomsCount">0</p>
         </div>
 
         <div class="card green">
             <h3>Bookings</h3>
-            <p>120</p>
+            <p id="totalBookingsCount">0</p>
         </div>
 
         <div class="card orange">
             <h3>Customers</h3>
-            <p>80</p>
+            <p id="totalGuestsCount">0</p>
         </div>
 
         <div class="card purple">
             <h3>Revenue</h3>
-            <p>$5000</p>
+            <p id="totalRevenueCount">$0</p>
         </div>
     </section>
 
@@ -72,22 +74,14 @@
 
         <div class="box large">
             <h3>Recent Bookings</h3>
-            <table>
+            <table id="bookingsTable">
                 <tr>
-                    <th>Name</th>
+                    <th>Guest Name</th>
                     <th>Room</th>
+                    <th>Check-in</th>
                     <th>Status</th>
                 </tr>
-                <tr>
-                    <td>John</td>
-                    <td>101</td>
-                    <td class="ok">Checked-in</td>
-                </tr>
-                <tr>
-                    <td>Ram</td>
-                    <td>203</td>
-                    <td class="pending">Pending</td>
-                </tr>
+                <tr><td colspan="4" style="text-align: center;">Loading...</td></tr>
             </table>
         </div>
 
@@ -95,13 +89,13 @@
             <h3>Room Status</h3>
 
             <div class="progress">
-                <div>Available <span>20</span></div>
-                <div class="bar"><div style="width:40%"></div></div>
+                <div>Available <span id="availableRoomsCount">0</span></div>
+                <div class="bar"><div id="availableRoomsBar" style="width:0%"></div></div>
             </div>
 
             <div class="progress">
-                <div>Occupied <span>30</span></div>
-                <div class="bar red"><div style="width:60%"></div></div>
+                <div>Occupied <span id="occupiedRoomsCount">0</span></div>
+                <div class="bar red"><div id="occupiedRoomsBar" style="width:0%"></div></div>
             </div>
         </div>
 
@@ -128,11 +122,100 @@
 </footer>
 
 <script>
+// Check if logged in on page load
+if (!isLoggedIn()) {
+    window.location.href = 'login.html';
+}
+
+// Set username in header
+document.getElementById('userDisplay').textContent = localStorage.getItem('username') || 'User';
+
+// Sidebar toggle
 function toggleSidebar(){
     document.getElementById("sidebar").classList.toggle("active");
     document.getElementById("overlay").classList.toggle("show");
     document.getElementById("mainContent").classList.toggle("shift");
 }
+
+// Load dashboard data
+async function loadDashboard() {
+    try {
+        // Load rooms data
+        const rooms = await getRooms();
+        const totalRooms = rooms.length;
+        const availableRooms = rooms.filter(r => r.status === 'Available').length;
+        const occupiedRooms = rooms.filter(r => r.status === 'Occupied').length;
+
+        // Update room counts
+        document.getElementById('totalRoomsCount').textContent = totalRooms;
+        document.getElementById('availableRoomsCount').textContent = availableRooms;
+        document.getElementById('occupiedRoomsCount').textContent = occupiedRooms;
+        
+        // Update progress bars
+        if (totalRooms > 0) {
+            const availablePercent = (availableRooms / totalRooms) * 100;
+            const occupiedPercent = (occupiedRooms / totalRooms) * 100;
+            document.getElementById('availableRoomsBar').style.width = availablePercent + '%';
+            document.getElementById('occupiedRoomsBar').style.width = occupiedPercent + '%';
+        }
+
+        // Load bookings data
+        const bookings = await getUpcomingBookings();
+        document.getElementById('totalBookingsCount').textContent = bookings.length;
+
+        // Update bookings table
+        const tableBody = document.getElementById('bookingsTable');
+        tableBody.innerHTML = `
+            <tr>
+                <th>Guest Name</th>
+                <th>Room</th>
+                <th>Check-in</th>
+                <th>Status</th>
+            </tr>
+        `;
+
+        if (bookings.length === 0) {
+            tableBody.innerHTML += '<tr><td colspan="4" style="text-align: center;">No upcoming bookings</td></tr>';
+        } else {
+            bookings.slice(0, 5).forEach(booking => {
+                const guestName = booking.guest_detail?.first_name + ' ' + booking.guest_detail?.last_name || 'Unknown';
+                const roomNumber = booking.room_detail?.room_number || 'N/A';
+                const checkIn = new Date(booking.check_in_date).toLocaleDateString();
+                const statusClass = booking.status === 'Confirmed' ? 'ok' : booking.status === 'Pending' ? 'pending' : 'ok';
+                
+                tableBody.innerHTML += `
+                    <tr>
+                        <td>${guestName}</td>
+                        <td>${roomNumber}</td>
+                        <td>${checkIn}</td>
+                        <td class="${statusClass}">${booking.status}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        // Load guests data
+        const guests = await getGuests();
+        document.getElementById('totalGuestsCount').textContent = guests.length;
+
+        // Calculate revenue from completed bookings
+        const payments = await getPayments();
+        const revenue = payments
+            .filter(p => p.status === 'Completed')
+            .reduce((sum, p) => sum + parseFloat(p.amount || 0), 0);
+        document.getElementById('totalRevenueCount').textContent = '$' + revenue.toFixed(2);
+
+    } catch (error) {
+        console.error('Error loading dashboard:', error);
+        alert('Error loading dashboard: ' + error.message);
+    }
+}
+
+// Load data when page loads
+window.addEventListener('load', loadDashboard);
+
+// Refresh data every 30 seconds
+setInterval(loadDashboard, 30000);
 </script>
 
 </body>

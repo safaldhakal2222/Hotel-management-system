@@ -21,4 +21,8 @@ app_name = 'resultapp'
 
 urlpatterns = [
     path('api/', include(router.urls)),
+    # Frontend views
+    path('', views.DashboardView.as_view(), name='dashboard'),
+    path('login/', views.LoginView.as_view(), name='login'),
+    path('auth-check/', views.AuthCheckView.as_view(), name='auth-check'),
 ]

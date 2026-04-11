@@ -2,6 +2,11 @@ from rest_framework import viewsets, status, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.views import APIView
+from django.shortcuts import render
+from django.views.generic import TemplateView
+from django.http import JsonResponse
+from django.contrib.auth import authenticate
 from django.db.models import Q
 from django.utils import timezone
 from datetime import timedelta
@@ -418,3 +423,21 @@ class ComplaintViewSet(viewsets.ModelViewSet):
         complaint.resolved_at = timezone.now()
         complaint.save()
         return Response({'status': 'Complaint resolved'})
+
+
+# ============ FRONTEND VIEWS ============
+
+class LoginView(TemplateView):
+    """Serve the login page"""
+    template_name = 'login.html'
+
+
+class DashboardView(TemplateView):
+    """Serve the dashboard page"""
+    template_name = 'index.html'
+
+
+class AuthCheckView(APIView):
+    """Check if user is authenticated"""
+    def get(self, request):
+        return Response({'authenticated': request.user.is_authenticated})
