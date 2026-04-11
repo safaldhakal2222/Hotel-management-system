@@ -9,7 +9,7 @@
 
 <body>
 
-<!-- TOP BAR (FIXED STRUCTURE) -->
+<!-- TOP BAR -->
 <header class="topbar">
 
     <div class="left">
@@ -31,10 +31,10 @@
 
 <!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
-    <div class="logo">HotelMS Pro</div>
+    <div class="logo">HotelMS</div>
 
-    <a href="#">🏠 Dashboard</a>
-    <a href="#">🛏 Bookings</a>
+    <a href="index.html">🏠 Dashboard</a>
+    <a href="booking.html">🛏 Bookings</a>
     <a href="#">🏨 Rooms</a>
     <a href="#">👤 Customers</a>
     <a href="#">💳 Payments</a>
@@ -48,22 +48,22 @@
     <section class="cards">
         <div class="card blue">
             <h3>Total Rooms</h3>
-            <p>50</p>
+            <p id="totalRooms">Loading...</p>
         </div>
 
         <div class="card green">
             <h3>Bookings</h3>
-            <p>120</p>
+            <p id="totalBookings">Loading...</p>
         </div>
 
         <div class="card orange">
             <h3>Customers</h3>
-            <p>80</p>
+            <p id="totalCustomers">Loading...</p>
         </div>
 
         <div class="card purple">
             <h3>Revenue</h3>
-            <p>$5000</p>
+            <p id="totalRevenue">Loading...</p>
         </div>
     </section>
 
@@ -127,13 +127,7 @@
     © 2026 Hotel Management System
 </footer>
 
-<script>
-function toggleSidebar(){
-    document.getElementById("sidebar").classList.toggle("active");
-    document.getElementById("overlay").classList.toggle("show");
-    document.getElementById("mainContent").classList.toggle("shift");
-}
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

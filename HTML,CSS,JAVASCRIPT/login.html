@@ -1,45 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="login.css">
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <title>Login</title>
-    </head>
-    <body>
-        <div class="wrapper">
-            <form action="#" method="post">
-                <h1>Hotel Management System</h1>
-                <div class="input-box">
-                    <input type="text" placeholder="Username" id="username" required>
-                    <i class='bx bxs-user'></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" placeholder="Password" id="password" required>
-                    <i class='bx  bxs-lock'></i> 
-                </div>
-                <div class="remember-forget">
-                    <label><input type="checkbox">Remember me</label>
-                    <a href="#">Forget password?</a>
-                </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
 
-                <button type="button" onclick="login()" class="btn">Login</button>
-            </form>
-        </div>
-    </body>
+    <link rel="stylesheet" href="login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <form class="login-box" onsubmit="login(event)">
+            
+            <h1>Hotel Management</h1>
+            <p class="subtitle">Sign in to continue</p>
+
+            <div class="input-box">
+                <input type="text" id="username" placeholder="Username" required>
+                <i class='bx bxs-user'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="password" id="password" placeholder="Password" required>
+                <i class='bx bxs-lock'></i>
+            </div>
+
+            <div class="options">
+                <label><input type="checkbox"> Remember me</label>
+                <a href="#">Forgot password?</a>
+            </div>
+
+            <button type="submit">Login</button>
+
+        </form>
+
+    </div>
+
     <script>
-        function login(event) {
-            let username = document.getElementById("username").value;
-            let password = document.getElementById("password").value;
+        function login(event){
+            event.preventDefault();
 
-            if (username === "admin" && password === "1234") {
+            let u = document.getElementById("username").value;
+            let p = document.getElementById("password").value;
+
+            if(u === "admin" && p === "1234"){
                 window.location.href = "index.html";
             } else {
-                alert("Invalid login");
+                alert("Invalid Login");
             }
         }
-</script>
-</script>
+    </script>
+
+</body>
 </html>

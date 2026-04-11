@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bookings - HotelMS</title>
+
+<link rel="stylesheet" href="booking.css">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+
+    <div class="left">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    </div>
+
+    <div class="center">
+        <h1>Hotel Management Bookings</h1>
+    </div>
+
+    <div class="right">
+        <div class="user">Admin</div>
+    </div>
+
+</header>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+    <div class="logo">HotelMS</div>
+
+    <a href="index.html">🏠 Dashboard</a>
+    <a href="booking.html">🛏 Bookings</a>
+    <a href="#">🏨 Rooms</a>
+    <a href="#">👤 Customers</a>
+    <a href="#">💳 Payments</a>
+    <a href="#">⚙ Settings</a>
+</aside>
+
+<!-- MAIN -->
+<main class="main-content" id="mainContent">
+
+    <div class="page-header">
+        <h2>New Booking</h2>
+        <p>Create and manage hotel reservations</p>
+    </div>
+
+    <div class="grid-layout">
+
+        <!-- GUEST INFO -->
+        <div class="card">
+            <h3>Guest Information</h3>
+
+            <label>Name</label>
+            <input type="text" placeholder="Enter guest name">
+
+            <label>Email</label>
+            <input type="email" placeholder="Enter email">
+
+            <label>Phone</label>
+            <input type="text" placeholder="Enter phone number">
+        </div>
+
+        <!-- ROOM INFO -->
+        <div class="card">
+            <h3>Room Details</h3>
+
+            <label>Room Type</label>
+            <select>
+                <option>Single</option>
+                <option>Double</option>
+                <option>Deluxe</option>
+                <option>Suite</option>
+            </select>
+
+            <label>Room Number</label>
+            <input type="text" placeholder="Auto / Select">
+
+            <label>Guests</label>
+            <input type="number" value="1" min="1">
+        </div>
+
+        <!-- CHECK IN -->
+        <div class="card">
+            <h3>Check-in Date</h3>
+            <input type="date">
+        </div>
+
+        <!-- CHECK OUT -->
+        <div class="card">
+            <h3>Check-out Date</h3>
+            <input type="date">
+        </div>
+
+        <!-- ACTION -->
+        <div class="card highlight">
+            <h3>Booking Action</h3>
+            <button onclick="createBooking()">Create Booking</button>
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    © 2026 Hotel Management System
+</footer>
+
+<script>
+function toggleSidebar(){
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("show");
+    document.getElementById("mainContent").classList.toggle("shift");
+}
+
+function createBooking(){
+    alert("Booking Created");
+}
+</script>
+
+</body>
+</html>
