@@ -4,8 +4,11 @@ function toggleSidebar(){
     document.getElementById("mainContent").classList.toggle("shift");
 }
 
+<<<<<<< HEAD
 // ============ BOOKING FUNCTIONS ============
 
+=======
+>>>>>>> ffa2eb9b8cefe477941b5780ebd7e987f2ee3421
 // Load hotels on page load
 async function loadHotels() {
     try {

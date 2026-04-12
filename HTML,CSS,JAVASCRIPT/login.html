@@ -33,13 +33,9 @@
                 <label><input type="checkbox"> Remember me</label>
                 <a href="#">Forgot password?</a>
             </div>
-
-            <button type="submit">Login</button>
-
+            <button type="button" onclick="login()" class="btn">Login</button>
         </form>
-
     </div>
-
     <script>
         // Redirect to dashboard if already logged in
         if (isLoggedIn()) {
