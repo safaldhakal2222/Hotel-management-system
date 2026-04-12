@@ -1,3 +1,4 @@
+from django.db import models
 from flask import Blueprint, request, jsonify
 from db import get_db
 
